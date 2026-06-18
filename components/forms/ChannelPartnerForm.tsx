@@ -74,7 +74,6 @@ export default function ChannelPartnerForm() {
   }
 
   function handleNext() {
-    setErrors({});
     const valid = step === 1 ? validateStep1() : step === 2 ? validateStep2() : validateStep3();
     if (valid) setStep(s => s + 1);
   }
@@ -92,7 +91,7 @@ export default function ChannelPartnerForm() {
     fd.append('Email', s1.email);
     fd.append('Address', s1.address);
     fd.append('PAN Number', s2.panNumber);
-    if (s2.panDoc) fd.append('PAN Document', s2.panDoc);
+    fd.append('PAN Document', s2.panDoc!);
     fd.append('RERA Number', s2.reraNumber);
     if (s2.reraDoc) fd.append('RERA Document', s2.reraDoc);
     fd.append('GST Number', s2.gstNumber);
@@ -103,10 +102,10 @@ export default function ChannelPartnerForm() {
     fd.append('Account Number', s3.accountNumber);
     fd.append('IFSC Code', s3.ifsc);
     fd.append('Beneficiary', s3.beneficiary);
-    if (s3.cheque) fd.append('Cancelled Cheque', s3.cheque);
+    fd.append('Cancelled Cheque', s3.cheque!);
     fd.append('ID Type', s4.idType);
     fd.append('ID Number', s4.idNumber);
-    if (s4.idDoc) fd.append('ID Document', s4.idDoc);
+    fd.append('ID Document', s4.idDoc!);
     fd.append('Remarks', s4.remarks);
 
     const result = await submitChannelPartnerForm(fd);
