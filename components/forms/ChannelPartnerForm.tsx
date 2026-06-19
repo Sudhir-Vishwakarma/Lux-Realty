@@ -9,7 +9,7 @@ type Step2 = { panNumber: string; panDoc: File | null; reraNumber: string; reraD
 type Step3 = { accountHolder: string; bankName: string; accountNumber: string; ifsc: string; beneficiary: string; cheque: File | null; };
 type Step4 = { idType: string; idNumber: string; idDoc: File | null; remarks: string; };
 
-const ID_TYPES = ['Aadhaar', 'PAN', 'Passport', 'Driving Licence', 'Voter ID'];
+const ID_TYPES = ['Aadhaar Card', 'PAN Card', 'Passport', 'Voter ID', 'Driving Licence'];
 
 const EMPTY1: Step1 = { applicantName: '', companyName: '', mobile: '', email: '', address: '' };
 const EMPTY2: Step2 = { panNumber: '', panDoc: null, reraNumber: '', reraDoc: null, gstNumber: '', gstDoc: null, experience: '' };
@@ -46,7 +46,6 @@ export default function ChannelPartnerForm() {
   function validateStep2(): boolean {
     const e: Record<string, string> = {};
     if (!s2.panNumber.trim()) e.panNumber = 'PAN number is required.';
-    if (!s2.panDoc) e.panDoc = 'PAN document is required.';
     if (!s2.experience.trim()) e.experience = 'Experience is required.';
     setErrors(e);
     return Object.keys(e).length === 0;
@@ -59,7 +58,6 @@ export default function ChannelPartnerForm() {
     if (!s3.accountNumber.trim()) e.accountNumber = 'Account number is required.';
     if (!s3.ifsc.trim()) e.ifsc = 'IFSC code is required.';
     if (!s3.beneficiary.trim()) e.beneficiary = 'Beneficiary name is required.';
-    if (!s3.cheque) e.cheque = 'Cancelled cheque is required.';
     setErrors(e);
     return Object.keys(e).length === 0;
   }
@@ -68,7 +66,6 @@ export default function ChannelPartnerForm() {
     const e: Record<string, string> = {};
     if (!s4.idType) e.idType = 'ID proof type is required.';
     if (!s4.idNumber.trim()) e.idNumber = 'ID proof number is required.';
-    if (!s4.idDoc) e.idDoc = 'ID proof document is required.';
     setErrors(e);
     return Object.keys(e).length === 0;
   }
@@ -85,28 +82,29 @@ export default function ChannelPartnerForm() {
     setApiError('');
 
     const fd = new FormData();
-    fd.append('Applicant Name', s1.applicantName);
-    fd.append('Company Name', s1.companyName);
-    fd.append('Mobile', s1.mobile);
-    fd.append('Email', s1.email);
-    fd.append('Address', s1.address);
-    fd.append('PAN Number', s2.panNumber);
-    fd.append('PAN Document', s2.panDoc!);
-    fd.append('RERA Number', s2.reraNumber);
-    if (s2.reraDoc) fd.append('RERA Document', s2.reraDoc);
-    fd.append('GST Number', s2.gstNumber);
-    if (s2.gstDoc) fd.append('GST Document', s2.gstDoc);
-    fd.append('Experience (Years)', s2.experience);
-    fd.append('Account Holder', s3.accountHolder);
-    fd.append('Bank Name', s3.bankName);
-    fd.append('Account Number', s3.accountNumber);
-    fd.append('IFSC Code', s3.ifsc);
-    fd.append('Beneficiary', s3.beneficiary);
-    fd.append('Cancelled Cheque', s3.cheque!);
-    fd.append('ID Type', s4.idType);
-    fd.append('ID Number', s4.idNumber);
-    fd.append('ID Document', s4.idDoc!);
-    fd.append('Remarks', s4.remarks);
+    fd.append('formType', 'channel_partner');
+    fd.append('applicant_name', s1.applicantName);
+    fd.append('company_name', s1.companyName);
+    fd.append('mobile_number', s1.mobile);
+    fd.append('personal_email', s1.email);
+    fd.append('company_address', s1.address);
+    fd.append('pan_number', s2.panNumber);
+    if (s2.panDoc) fd.append('pan_doc', s2.panDoc);
+    fd.append('rera_number', s2.reraNumber);
+    if (s2.reraDoc) fd.append('rera_doc', s2.reraDoc);
+    fd.append('gst_number', s2.gstNumber);
+    if (s2.gstDoc) fd.append('gst_doc', s2.gstDoc);
+    fd.append('experience_years', s2.experience);
+    fd.append('bank_account_holder', s3.accountHolder);
+    fd.append('bank_name', s3.bankName);
+    fd.append('account_number', s3.accountNumber);
+    fd.append('ifsc_code', s3.ifsc);
+    fd.append('beneficiary_name', s3.beneficiary);
+    if (s3.cheque) fd.append('cancelled_cheque', s3.cheque);
+    fd.append('id_proof_type', s4.idType);
+    fd.append('id_proof_number', s4.idNumber);
+    if (s4.idDoc) fd.append('id_proof_doc', s4.idDoc);
+    fd.append('remarks', s4.remarks);
 
     try {
       const result = await submitChannelPartnerForm(fd);
@@ -238,7 +236,7 @@ function Step2Fields({ s, setS, errors, clearError }: {
           <input type="text" value={s.panNumber} onChange={e => set('panNumber', e.target.value.toUpperCase())}
             className={inputCls(!!errors.panNumber)} placeholder="ABCDE1234F" maxLength={10} />
         </Field>
-        <FileUploadField label="PAN Document" required onChange={f => set('panDoc', f)} error={errors.panDoc} />
+        <FileUploadField label="PAN Document" onChange={f => set('panDoc', f)} error={errors.panDoc} />
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Field label="RERA Number" error={errors.reraNumber}>
@@ -293,7 +291,7 @@ function Step3Fields({ s, setS, errors, clearError }: {
         <input type="text" value={s.beneficiary} onChange={e => set('beneficiary', e.target.value)}
           className={inputCls(!!errors.beneficiary)} placeholder="Beneficiary name" />
       </Field>
-      <FileUploadField label="Cancelled Cheque" required onChange={f => set('cheque', f)} error={errors.cheque} />
+      <FileUploadField label="Cancelled Cheque" onChange={f => set('cheque', f)} error={errors.cheque} />
     </div>
   );
 }
@@ -317,7 +315,7 @@ function Step4Fields({ s, setS, errors, clearError }: {
             className={inputCls(!!errors.idNumber)} placeholder="ID number" />
         </Field>
       </div>
-      <FileUploadField label="ID Proof Upload" required onChange={f => set('idDoc', f)} error={errors.idDoc} />
+      <FileUploadField label="ID Proof Upload" onChange={f => set('idDoc', f)} error={errors.idDoc} />
       <Field label="Remarks / Additional Information" error={errors.remarks}>
         <textarea value={s.remarks} onChange={e => set('remarks', e.target.value)} rows={3}
           className={inputCls(!!errors.remarks) + ' resize-none'} placeholder="Any additional notes..." />

@@ -5,13 +5,14 @@ export async function submitLeadForm(
   if (!url) return { success: false, message: 'API URL not configured.' };
 
   try {
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    return { success: true, message: 'Lead submitted successfully.' };
+    const fd = new FormData();
+    fd.append('formType', 'lead');
+    Object.entries(data).forEach(([key, value]) => fd.append(key, value));
+
+    const res = await fetch(url, { method: 'POST', body: fd });
+    const json = await res.json();
+    if (json.status === 'success') return { success: true, message: json.message || 'Lead submitted successfully.' };
+    return { success: false, message: json.message || 'Submission failed. Please try again.' };
   } catch {
     return { success: false, message: 'Submission failed. Please try again.' };
   }
@@ -25,8 +26,9 @@ export async function submitChannelPartnerForm(
 
   try {
     const res = await fetch(url, { method: 'POST', body: data });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    return { success: true, message: 'Registration submitted successfully.' };
+    const json = await res.json();
+    if (json.status === 'success') return { success: true, message: json.message || 'Registration submitted successfully.' };
+    return { success: false, message: json.message || 'Submission failed. Please try again.' };
   } catch {
     return { success: false, message: 'Submission failed. Please try again.' };
   }

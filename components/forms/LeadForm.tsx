@@ -3,13 +3,13 @@
 import { useState } from 'react';
 import { submitLeadForm } from '@/lib/api';
 
-const STATUS_OPTIONS = ['New', 'Interested', 'Not Interested', 'Follow Up', 'Converted', 'Lost'];
-const SOURCE_OPTIONS = ['Website', 'Walk-in', 'Referral', 'Social Media', 'Advertisement', 'Other'];
-const SUBSOURCE_OPTIONS = ['Facebook', 'Instagram', 'Google Ads', 'YouTube', 'Newspaper', 'Hoarding', 'Other'];
-const BUDGET_OPTIONS = ['Under ₹25L', '₹25L–₹50L', '₹50L–₹1Cr', '₹1Cr–₹2Cr', 'Above ₹2Cr'];
-const TIMELINE_OPTIONS = ['Immediate', 'Within 3 Months', '3–6 Months', '6–12 Months', 'No Fixed Timeline'];
-const INTEREST_OPTIONS = ['Residential', 'Commercial', 'Plots', 'Villas', 'Luxury Apartments'];
-const OWNER_OPTIONS = ['Admin', 'Agent 1', 'Agent 2', 'Agent 3'];
+const STATUS_OPTIONS = ['New', 'Contacted', 'Interested', 'Not Interested', 'Qualified', 'Site Visit Scheduled', 'Site Visit Done', 'Negotiation', 'Converted', 'Lost'];
+const SOURCE_OPTIONS = ['Website', 'Social Media', 'Google Ads', 'Referral', 'Walk-in', 'Channel Partner', 'IVR / Call', 'Exhibition', 'Newspaper', 'Hoarding'];
+const SUBSOURCE_OPTIONS = ['Facebook', 'Instagram', 'YouTube', 'Google Search', 'WhatsApp', '99acres', 'MagicBricks', 'Housing.com', 'NoBroker'];
+const BUDGET_OPTIONS = ['Under 30L', '30L - 50L', '50L - 75L', '75L - 1Cr', '1Cr - 1.5Cr', '1.5Cr - 2Cr', '2Cr - 3Cr', 'Above 3Cr'];
+const TIMELINE_OPTIONS = ['Immediate (0-1 Month)', '1-3 Months', '3-6 Months', '6-12 Months', 'More than 1 Year'];
+const INTEREST_OPTIONS = ['Project A', 'Project B', 'Project C'];
+const OWNER_OPTIONS = ['Sales Person 1', 'Sales Person 2', 'Sales Person 3'];
 
 type FormData = {
   name: string; phone: string; altPhone: string; email: string;
@@ -56,11 +56,18 @@ export default function LeadForm() {
     setApiError('');
     try {
       const result = await submitLeadForm({
-        Name: form.name, Phone: form.phone, 'Alternate Phone': form.altPhone,
-        Email: form.email, Status: form.status, Source: form.source,
-        'Sub-source': form.subSource, Budget: form.budget,
-        'Buying Timeline': form.buyingTimeline, 'Project Interest': form.projectInterest,
-        Owner: form.owner, 'Channel Partner': form.channelPartner,
+        name: form.name,
+        phone: form.phone,
+        alternate_phone: form.altPhone,
+        email: form.email,
+        status: form.status,
+        source: form.source,
+        sub_source: form.subSource,
+        budget: form.budget,
+        buying_timeline: form.buyingTimeline,
+        project_interest: form.projectInterest,
+        owner: form.owner,
+        channel_partner: form.channelPartner,
       });
       if (result.success) setSubmitted(true);
       else setApiError(result.message);
