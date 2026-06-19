@@ -1,9 +1,6 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
-import Modal from '@/components/Modal';
-import ChannelPartnerForm from '@/components/forms/ChannelPartnerForm';
 
 const links = {
   Company: ['About Us', 'Careers', 'Press', 'Blog', 'Contact'],
@@ -12,11 +9,8 @@ const links = {
 };
 
 export default function Footer() {
-  const [cpOpen, setCpOpen] = useState(false);
-
   return (
-    <>
-      <footer className="bg-gray-950 text-gray-400">
+    <footer className="bg-gray-950 text-gray-400">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
             {/* Brand */}
@@ -57,7 +51,7 @@ export default function Footer() {
 
               {/* Become a Partner CTA */}
               <button
-                onClick={() => setCpOpen(true)}
+                onClick={() => window.dispatchEvent(new Event('open-cp-modal'))}
                 className="mt-6 bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors"
               >
                 Become a Channel Partner
@@ -97,11 +91,6 @@ export default function Footer() {
             </div>
           </div>
         </div>
-      </footer>
-
-      <Modal isOpen={cpOpen} onClose={() => setCpOpen(false)} title="Channel Partner Registration">
-        <ChannelPartnerForm />
-      </Modal>
-    </>
+    </footer>
   );
 }

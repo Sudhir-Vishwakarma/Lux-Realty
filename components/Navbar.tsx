@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Modal from '@/components/Modal';
 import LeadForm from '@/components/forms/LeadForm';
@@ -10,6 +10,12 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [leadOpen, setLeadOpen] = useState(false);
   const [cpOpen, setCpOpen] = useState(false);
+
+  useEffect(() => {
+    const handler = () => setCpOpen(true);
+    window.addEventListener('open-cp-modal', handler);
+    return () => window.removeEventListener('open-cp-modal', handler);
+  }, []);
 
   return (
     <>

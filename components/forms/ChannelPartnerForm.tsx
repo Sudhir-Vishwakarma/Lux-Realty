@@ -108,10 +108,13 @@ export default function ChannelPartnerForm() {
     fd.append('ID Document', s4.idDoc!);
     fd.append('Remarks', s4.remarks);
 
-    const result = await submitChannelPartnerForm(fd);
-    setLoading(false);
-    if (result.success) setSubmitted(true);
-    else setApiError(result.message);
+    try {
+      const result = await submitChannelPartnerForm(fd);
+      if (result.success) setSubmitted(true);
+      else setApiError(result.message);
+    } finally {
+      setLoading(false);
+    }
   }
 
   if (submitted) {

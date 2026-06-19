@@ -11,8 +11,6 @@ const TIMELINE_OPTIONS = ['Immediate', 'Within 3 Months', '3–6 Months', '6–1
 const INTEREST_OPTIONS = ['Residential', 'Commercial', 'Plots', 'Villas', 'Luxury Apartments'];
 const OWNER_OPTIONS = ['Admin', 'Agent 1', 'Agent 2', 'Agent 3'];
 
-const REQUIRED_FIELDS = ['name', 'phone', 'email', 'status', 'source', 'budget', 'buyingTimeline'];
-
 type FormData = {
   name: string; phone: string; altPhone: string; email: string;
   status: string; source: string; subSource: string; budget: string;
@@ -56,16 +54,19 @@ export default function LeadForm() {
     if (!validate()) return;
     setLoading(true);
     setApiError('');
-    const result = await submitLeadForm({
-      Name: form.name, Phone: form.phone, 'Alternate Phone': form.altPhone,
-      Email: form.email, Status: form.status, Source: form.source,
-      'Sub-source': form.subSource, Budget: form.budget,
-      'Buying Timeline': form.buyingTimeline, 'Project Interest': form.projectInterest,
-      Owner: form.owner, 'Channel Partner': form.channelPartner,
-    });
-    setLoading(false);
-    if (result.success) setSubmitted(true);
-    else setApiError(result.message);
+    try {
+      const result = await submitLeadForm({
+        Name: form.name, Phone: form.phone, 'Alternate Phone': form.altPhone,
+        Email: form.email, Status: form.status, Source: form.source,
+        'Sub-source': form.subSource, Budget: form.budget,
+        'Buying Timeline': form.buyingTimeline, 'Project Interest': form.projectInterest,
+        Owner: form.owner, 'Channel Partner': form.channelPartner,
+      });
+      if (result.success) setSubmitted(true);
+      else setApiError(result.message);
+    } finally {
+      setLoading(false);
+    }
   }
 
   if (submitted) {
@@ -100,7 +101,7 @@ export default function LeadForm() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Field label="Alternate Phone" error={errors.altPhone}>
           <input type="tel" value={form.altPhone} onChange={e => set('altPhone', e.target.value)}
-            className={inputCls(false)} placeholder="+91 XXXXX XXXXX" />
+            className={inputCls(!!errors.altPhone)} placeholder="+91 XXXXX XXXXX" />
         </Field>
         <Field label="Email" required error={errors.email}>
           <input type="email" value={form.email} onChange={e => set('email', e.target.value)}
@@ -127,7 +128,7 @@ export default function LeadForm() {
       {/* Row: Sub-source + Budget */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Field label="Sub-source" error={errors.subSource}>
-          <select value={form.subSource} onChange={e => set('subSource', e.target.value)} className={selectCls(false)}>
+          <select value={form.subSource} onChange={e => set('subSource', e.target.value)} className={selectCls(!!errors.subSource)}>
             <option value="">Select sub-source</option>
             {SUBSOURCE_OPTIONS.map(o => <option key={o} value={o}>{o}</option>)}
           </select>
@@ -149,7 +150,7 @@ export default function LeadForm() {
           </select>
         </Field>
         <Field label="Project Interest" error={errors.projectInterest}>
-          <select value={form.projectInterest} onChange={e => set('projectInterest', e.target.value)} className={selectCls(false)}>
+          <select value={form.projectInterest} onChange={e => set('projectInterest', e.target.value)} className={selectCls(!!errors.projectInterest)}>
             <option value="">Select interest</option>
             {INTEREST_OPTIONS.map(o => <option key={o} value={o}>{o}</option>)}
           </select>
@@ -159,14 +160,14 @@ export default function LeadForm() {
       {/* Row: Owner + Channel Partner */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Field label="Owner" error={errors.owner}>
-          <select value={form.owner} onChange={e => set('owner', e.target.value)} className={selectCls(false)}>
+          <select value={form.owner} onChange={e => set('owner', e.target.value)} className={selectCls(!!errors.owner)}>
             <option value="">Select owner</option>
             {OWNER_OPTIONS.map(o => <option key={o} value={o}>{o}</option>)}
           </select>
         </Field>
         <Field label="Channel Partner" error={errors.channelPartner}>
           <input type="text" value={form.channelPartner} onChange={e => set('channelPartner', e.target.value)}
-            className={inputCls(false)} placeholder="Partner name" />
+            className={inputCls(!!errors.channelPartner)} placeholder="Partner name" />
         </Field>
       </div>
 
