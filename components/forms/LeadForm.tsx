@@ -78,7 +78,7 @@ export default function LeadForm() {
           </svg>
         </div>
         <h3 className="text-xl font-bold text-gray-800">Lead Submitted!</h3>
-        <p className="text-gray-500 text-sm">We'll follow up with this lead shortly.</p>
+        <p className="text-gray-500 text-sm">We&apos;ll follow up with this lead shortly.</p>
       </div>
     );
   }
