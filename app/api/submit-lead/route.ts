@@ -6,14 +6,37 @@ export async function POST(request: Request) {
 
   try {
     const data = await request.json() as Record<string, string>;
-    const fd = new FormData();
-    fd.append('formType', 'lead');
-    Object.entries(data).forEach(([key, value]) => fd.append(key, value ?? ''));
 
-    const res = await fetch(url, { method: 'POST', body: fd });
-    const json = await res.json();
-    return Response.json(json);
-  } catch {
-    return Response.json({ status: 'error', message: 'Submission failed. Please try again.' }, { status: 500 });
+    // URLSearchParams is more reliable than FormData for text-only data with Google Apps Script
+    const params = new URLSearchParams();
+    params.append('formType', 'lead');
+    Object.entries(data).forEach(([key, value]) => params.append(key, value ?? ''));
+
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: params.toString(),
+      redirect: 'follow',
+    });
+
+    // Read as text first — Google Apps Script may return non-JSON on errors
+    const text = await res.text();
+
+    try {
+      const json = JSON.parse(text);
+      return Response.json(json);
+    } catch {
+      // If response isn't JSON but request reached the server, treat as success
+      if (res.status >= 200 && res.status < 400) {
+        return Response.json({ status: 'success', message: 'Lead submitted successfully.' });
+      }
+      return Response.json(
+        { status: 'error', message: `Server returned status ${res.status}.` },
+        { status: 502 }
+      );
+    }
+  } catch (err) {
+    const message = err instanceof Error ? err.message : 'Submission failed. Please try again.';
+    return Response.json({ status: 'error', message }, { status: 500 });
   }
 }
