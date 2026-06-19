@@ -206,7 +206,7 @@ function Step1Fields({ s, setS, errors, clearError }: {
       </Field>
       <Field label="Company / Business Name" error={errors.companyName}>
         <input type="text" value={s.companyName} onChange={e => set('companyName', e.target.value)}
-          className={inputCls(false)} placeholder="Company or business name" />
+          className={inputCls(!!errors.companyName)} placeholder="Company or business name" />
       </Field>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Field label="Mobile Number" required error={errors.mobile}>
@@ -220,7 +220,7 @@ function Step1Fields({ s, setS, errors, clearError }: {
       </div>
       <Field label="Company Address" error={errors.address}>
         <textarea value={s.address} onChange={e => set('address', e.target.value)} rows={3}
-          className={inputCls(false) + ' resize-none'} placeholder="Full business address" />
+          className={inputCls(!!errors.address) + ' resize-none'} placeholder="Full business address" />
       </Field>
     </div>
   );
@@ -243,14 +243,14 @@ function Step2Fields({ s, setS, errors, clearError }: {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Field label="RERA Number" error={errors.reraNumber}>
           <input type="text" value={s.reraNumber} onChange={e => set('reraNumber', e.target.value)}
-            className={inputCls(false)} placeholder="RERA registration number" />
+            className={inputCls(!!errors.reraNumber)} placeholder="RERA registration number" />
         </Field>
         <FileUploadField label="RERA Document" onChange={f => set('reraDoc', f)} error={errors.reraDoc} />
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Field label="GST Number" error={errors.gstNumber}>
           <input type="text" value={s.gstNumber} onChange={e => set('gstNumber', e.target.value.toUpperCase())}
-            className={inputCls(false)} placeholder="22AAAAA0000A1Z5" />
+            className={inputCls(!!errors.gstNumber)} placeholder="22AAAAA0000A1Z5" />
         </Field>
         <FileUploadField label="GST Document" onChange={f => set('gstDoc', f)} error={errors.gstDoc} />
       </div>
@@ -320,7 +320,7 @@ function Step4Fields({ s, setS, errors, clearError }: {
       <FileUploadField label="ID Proof Upload" required onChange={f => set('idDoc', f)} error={errors.idDoc} />
       <Field label="Remarks / Additional Information" error={errors.remarks}>
         <textarea value={s.remarks} onChange={e => set('remarks', e.target.value)} rows={3}
-          className={inputCls(false) + ' resize-none'} placeholder="Any additional notes..." />
+          className={inputCls(!!errors.remarks) + ' resize-none'} placeholder="Any additional notes..." />
       </Field>
     </div>
   );
