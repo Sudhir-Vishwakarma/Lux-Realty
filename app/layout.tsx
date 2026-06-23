@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -19,7 +20,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        <Script
+          src="https://db.brewhouse.realatte.com/api/chatbot/widget.js"
+          data-chatbot="cbk_pub_41016b05b5d2c6bd0e188d35"
+          strategy="lazyOnload"
+        />
+      </body>
     </html>
   );
 }
