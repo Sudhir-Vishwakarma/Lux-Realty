@@ -1,17 +1,19 @@
+import { NextResponse } from 'next/server';
+
 export async function POST(request: Request) {
   const url = process.env.NEXT_PUBLIC_LEAD_API_URL;
   if (!url) {
-    return Response.json({ status: 'error', message: 'API URL not configured.' }, { status: 500 });
+    return NextResponse.json({ status: 'error', message: 'API URL not configured.' }, { status: 500 });
   }
 
   try {
     const data = await request.json() as Record<string, string>;
-
-    // URLSearchParams is more reliable than FormData for text-only data with Google Apps Script
     const params = new URLSearchParams();
     params.append('formType', 'lead');
     Object.entries(data).forEach(([key, value]) => params.append(key, value ?? ''));
 
+    // Apps Script flow: POST to exec → doPost runs → 302 redirect → GET returns JSON output
+    // fetch with redirect:'follow' correctly converts the POST→GET on 302 (per HTTP spec)
     const res = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -19,24 +21,22 @@ export async function POST(request: Request) {
       redirect: 'follow',
     });
 
-    // Read as text first — Google Apps Script may return non-JSON on errors
     const text = await res.text();
+    console.log('[submit-lead] Apps Script response:', text.substring(0, 500));
 
     try {
       const json = JSON.parse(text);
-      return Response.json(json);
+      return NextResponse.json(json);
     } catch {
-      // If response isn't JSON but request reached the server, treat as success
-      if (res.status >= 200 && res.status < 400) {
-        return Response.json({ status: 'success', message: 'Lead submitted successfully.' });
-      }
-      return Response.json(
-        { status: 'error', message: `Server returned status ${res.status}.` },
+      console.error('[submit-lead] Non-JSON response from Apps Script:', text.substring(0, 1000));
+      return NextResponse.json(
+        { status: 'error', message: 'Script returned an unexpected response. Check server logs.' },
         { status: 502 }
       );
     }
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Submission failed. Please try again.';
-    return Response.json({ status: 'error', message }, { status: 500 });
+    console.error('[submit-lead] Error:', message);
+    return NextResponse.json({ status: 'error', message }, { status: 500 });
   }
 }

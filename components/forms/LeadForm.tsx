@@ -8,8 +8,14 @@ const SOURCE_OPTIONS = ['Website', 'Social Media', 'Google Ads', 'Referral', 'Wa
 const SUBSOURCE_OPTIONS = ['Facebook', 'Instagram', 'YouTube', 'Google Search', 'WhatsApp', '99acres', 'MagicBricks', 'Housing.com', 'NoBroker'];
 const BUDGET_OPTIONS = ['Under 30L', '30L - 50L', '50L - 75L', '75L - 1Cr', '1Cr - 1.5Cr', '1.5Cr - 2Cr', '2Cr - 3Cr', 'Above 3Cr'];
 const TIMELINE_OPTIONS = ['Immediate (0-1 Month)', '1-3 Months', '3-6 Months', '6-12 Months', 'More than 1 Year'];
-const INTEREST_OPTIONS = ['Project A', 'Project B', 'Project C'];
-const OWNER_OPTIONS = ['Sales Person 1', 'Sales Person 2', 'Sales Person 3'];
+const INTEREST_OPTIONS = [
+  'Luxe Serene Heights — Worli',
+  'Luxe Greens — Powai',
+  'Luxe Marina Villas — Juhu',
+  'Luxe BKC Commercial Tower — BKC',
+  'Luxe Bandra Residences — Bandra West',
+];
+const OWNER_OPTIONS = ['Rahul Sharma', 'Priya Patel', 'Amit Desai', 'Neha Kulkarni'];
 
 type FormData = {
   name: string; phone: string; altPhone: string; email: string;
