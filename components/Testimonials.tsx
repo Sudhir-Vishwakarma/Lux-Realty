@@ -17,7 +17,7 @@ const testimonials = [
   },
   {
     name: 'Ananya Iyer',
-    role: 'Renter — Bandra West, Mumbai',
+    role: 'Home Buyer — Bandra West, Mumbai',
     initials: 'AI',
     color: 'bg-purple-500',
     rating: 5,

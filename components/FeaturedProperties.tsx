@@ -16,7 +16,7 @@ const properties = [
     title: 'Luxury Studio Apartment',
     location: 'Bandra West, Mumbai',
     price: '₹95,000/mo',
-    type: 'For Rent',
+    type: 'For Sale',
     beds: 1,
     baths: 1,
     area: '650',
@@ -52,7 +52,7 @@ const properties = [
     title: 'Premium Office Space',
     location: 'BKC, Mumbai',
     price: '₹3,20,000/mo',
-    type: 'For Rent',
+    type: 'For Sale',
     beds: 0,
     baths: 2,
     area: '2,400',
@@ -85,9 +85,7 @@ function PropertyCard({ property }: { property: typeof properties[0] }) {
 
         {/* Type badge */}
         <span className={`absolute top-3 left-3 text-xs font-bold px-3 py-1 rounded-full ${
-          property.type === 'For Sale'
-            ? 'bg-blue-900 text-white'
-            : 'bg-amber-500 text-white'
+          'bg-blue-900 text-white'
         }`}>
           {property.type}
         </span>

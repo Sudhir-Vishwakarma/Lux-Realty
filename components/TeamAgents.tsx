@@ -31,8 +31,8 @@ const agents = [
   },
   {
     name: 'Neha Kulkarni',
-    title: 'Rental & NRI Advisor',
-    specialization: 'Rentals & NRI Investments',
+    title: 'Sales & NRI Advisor',
+    specialization: 'Sales & NRI Investments',
     experience: '7 Years',
     localities: 'Bandra, Powai, Thane',
     initials: 'NK',

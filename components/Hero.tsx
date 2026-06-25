@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-const tabs = ['Buy', 'Rent', 'Sell'];
+const tabs = ['Buy', 'For Sale', 'Sell'];
 
 export default function Hero() {
   const [activeTab, setActiveTab] = useState('Buy');

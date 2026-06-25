@@ -53,17 +53,12 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-blue-900 shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 shrink-0">
-              <div className="w-8 h-8 bg-blue-900 rounded-lg flex items-center justify-center">
-                <svg className="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
-                </svg>
-              </div>
-              <span className="text-xl font-bold text-blue-900">Luxe<span className="text-amber-500">Realty</span></span>
+            <Link href="/" className="flex items-center shrink-0">
+              <img src="/logo.webp" alt="LuxeRealty" className="h-9 w-auto" />
             </Link>
 
             {/* Desktop Nav */}
@@ -72,8 +67,8 @@ export default function Navbar() {
                 <button key={href} onClick={() => scrollTo(href)}
                   className={`text-sm font-medium transition-colors ${
                     activeSection === href.replace('#', '')
-                      ? 'text-blue-900 border-b-2 border-amber-500 pb-0.5'
-                      : 'text-gray-600 hover:text-blue-900'
+                      ? 'text-amber-400 border-b-2 border-amber-400 pb-0.5'
+                      : 'text-white/80 hover:text-white'
                   }`}>
                   {label}
                 </button>
@@ -83,17 +78,17 @@ export default function Navbar() {
             {/* CTA */}
             <div className="hidden lg:flex items-center gap-3">
               <button onClick={() => setCpOpen(true)}
-                className="text-sm font-semibold text-blue-900 border border-blue-900 px-4 py-2 rounded-lg hover:bg-blue-50 transition-colors">
+                className="text-sm font-semibold text-white border border-white/40 px-4 py-2 rounded-lg hover:bg-white/10 transition-colors">
                 Become a Partner
               </button>
               <button onClick={() => setLeadOpen(true)}
-                className="bg-blue-900 text-white text-sm font-semibold px-5 py-2 rounded-lg hover:bg-blue-800 transition-colors">
+                className="bg-amber-500 hover:bg-amber-400 text-white text-sm font-semibold px-5 py-2 rounded-lg transition-colors">
                 Enquire Now
               </button>
             </div>
 
             {/* Mobile menu button */}
-            <button className="lg:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100"
+            <button className="lg:hidden p-2 rounded-lg text-white hover:bg-white/10 transition-colors"
               onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
               {menuOpen ? (
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -109,24 +104,24 @@ export default function Navbar() {
 
           {/* Mobile menu */}
           {menuOpen && (
-            <div className="lg:hidden border-t border-gray-100 py-4 flex flex-col gap-3">
+            <div className="lg:hidden border-t border-white/10 py-4 flex flex-col gap-3">
               {navLinks.map(({ label, href }) => (
                 <button key={href} onClick={() => scrollTo(href)}
-                  className={`text-sm font-medium text-left px-2 py-1 rounded transition-colors ${
+                  className={`text-sm font-medium text-left px-2 py-1.5 rounded transition-colors ${
                     activeSection === href.replace('#', '')
-                      ? 'text-blue-900 font-semibold'
-                      : 'text-gray-600 hover:text-blue-900'
+                      ? 'text-amber-400 font-semibold'
+                      : 'text-white/80 hover:text-white'
                   }`}>
                   {label}
                 </button>
               ))}
-              <div className="flex flex-col gap-2 pt-2 border-t border-gray-100">
+              <div className="flex flex-col gap-2 pt-2 border-t border-white/10">
                 <button onClick={() => { setCpOpen(true); setMenuOpen(false); }}
-                  className="text-sm font-semibold text-blue-900 border border-blue-900 px-4 py-2 rounded-lg text-left">
+                  className="text-sm font-semibold text-white border border-white/40 px-4 py-2 rounded-lg text-left hover:bg-white/10 transition-colors">
                   Become a Partner
                 </button>
                 <button onClick={() => { setLeadOpen(true); setMenuOpen(false); }}
-                  className="bg-blue-900 text-white text-sm font-semibold px-4 py-2 rounded-lg text-left">
+                  className="bg-amber-500 hover:bg-amber-400 text-white text-sm font-semibold px-4 py-2 rounded-lg text-left transition-colors">
                   Enquire Now
                 </button>
               </div>

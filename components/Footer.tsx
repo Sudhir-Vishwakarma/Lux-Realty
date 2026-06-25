@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const links = {
   Company: ['About Us', 'Careers', 'Press', 'Blog', 'Contact'],
-  Properties: ['Buy', 'Rent', 'Sell', 'Commercial', 'New Developments'],
+  Properties: ['Buy', 'For Sale', 'Sell', 'Commercial', 'New Developments'],
   Resources: ['Market Reports', 'Mortgage Calculator', 'Buyer Guide', 'Seller Guide', 'FAQ'],
 };
 
@@ -15,13 +15,8 @@ export default function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
             {/* Brand */}
             <div className="lg:col-span-2">
-              <Link href="/" className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 bg-blue-800 rounded-lg flex items-center justify-center">
-                  <svg className="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
-                  </svg>
-                </div>
-                <span className="text-xl font-bold text-white">Luxe<span className="text-amber-400">Realty</span></span>
+              <Link href="/" className="flex items-center mb-4">
+                <img src="/logo.webp" alt="LuxeRealty" className="h-9 w-auto" />
               </Link>
               <p className="text-sm leading-relaxed mb-6 max-w-xs">
                 Mumbai&apos;s trusted real estate partner since 2009. Specialising in premium residential, commercial, and luxury properties across 25+ Mumbai localities.
