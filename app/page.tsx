@@ -3,6 +3,10 @@ import Hero from '@/components/Hero';
 import Stats from '@/components/Stats';
 import AboutUs from '@/components/AboutUs';
 import FeaturedProperties from '@/components/FeaturedProperties';
+import Gallery from '@/components/Gallery';
+import FloorPlans from '@/components/FloorPlans';
+import Connectivity from '@/components/Connectivity';
+import Amenities from '@/components/Amenities';
 import Services from '@/components/Services';
 import TeamAgents from '@/components/TeamAgents';
 import HowItWorks from '@/components/HowItWorks';
@@ -16,16 +20,20 @@ export default function Home() {
     <>
       <Navbar />
       <main>
-        <Hero />
+        <div id="hero"><Hero /></div>
         <Stats />
         <AboutUs />
-        <FeaturedProperties />
-        <Services />
-        <TeamAgents />
+        <div id="properties"><FeaturedProperties /></div>
+        <Gallery />
+        <FloorPlans />
+        <Connectivity />
+        <Amenities />
+        <div id="services"><Services /></div>
+        <div id="team"><TeamAgents /></div>
         <HowItWorks />
-        <FAQ />
+        <div id="faq"><FAQ /></div>
         <Testimonials />
-        <CTABanner />
+        <div id="contact"><CTABanner /></div>
       </main>
       <Footer />
     </>
