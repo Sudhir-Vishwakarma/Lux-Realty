@@ -16,7 +16,7 @@ export default function Footer() {
             {/* Brand */}
             <div className="lg:col-span-2">
               <Link href="/" className="flex items-center mb-4">
-                <img src="/logo.webp" alt="LuxeRealty" className="h-9 w-auto" />
+                <img src="/logo.webp" alt="Realatte" className="h-9 w-auto" />
               </Link>
               <p className="text-sm leading-relaxed mb-6 max-w-xs">
                 Mumbai&apos;s trusted real estate partner since 2009. Specialising in premium residential, commercial, and luxury properties across 25+ Mumbai localities.
@@ -34,7 +34,7 @@ export default function Footer() {
                   <svg className="w-4 h-4 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
-                  hello@luxerealty.com
+                  hello@realatte.co.in
                 </p>
                 <p className="flex items-center gap-2">
                   <svg className="w-4 h-4 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -70,7 +70,7 @@ export default function Footer() {
 
           {/* Bottom */}
           <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-xs">© 2025 LuxeRealty. All rights reserved. RERA Reg. No. P51800012345</p>
+            <p className="text-xs">© 2025 Realatte. All rights reserved. RERA Reg. No. P51800012345</p>
             <div className="flex gap-4">
               {['facebook', 'twitter', 'instagram', 'linkedin'].map((social) => (
                 <Link key={social} href="#"

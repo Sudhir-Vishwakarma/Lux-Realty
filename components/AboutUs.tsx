@@ -43,7 +43,7 @@ export default function AboutUs() {
               Mumbai&apos;s Most Trusted<br />Real Estate Partner
             </h2>
             <p className="text-gray-600 leading-relaxed mb-4">
-              Founded in 2009, LuxeRealty was built on a single belief — buying or selling a home should be a joyful experience, not a stressful one. We started with a small office in Bandra and a team of five passionate agents. Today, we operate across 25+ Mumbai localities with a team of 50+ certified real estate professionals.
+              Founded in 2009, Realatte was built on a single belief — buying or selling a home should be a joyful experience, not a stressful one. We started with a small office in Bandra and a team of five passionate agents. Today, we operate across 25+ Mumbai localities with a team of 50+ certified real estate professionals.
             </p>
             <p className="text-gray-600 leading-relaxed mb-8">
               We specialise in premium residential apartments, luxury villas, commercial spaces, and plotted developments across Worli, Bandra, Juhu, Powai, BKC, Prabhadevi, Andheri, and Navi Mumbai. Every property we list is personally verified, RERA-compliant, and backed by our transparent documentation process.

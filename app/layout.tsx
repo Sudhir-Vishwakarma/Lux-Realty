@@ -9,7 +9,7 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "LuxeRealty — Premium Properties in Mumbai",
+  title: "Realatte — Premium Properties in Mumbai",
   description: "Discover premium residential, commercial & luxury properties in Mumbai. Trusted by 3,200+ clients since 2009. RERA registered. Worli, Bandra, Juhu, Powai, BKC & more.",
 };
 

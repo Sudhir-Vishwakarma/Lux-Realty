@@ -8,19 +8,19 @@ const properties = [
     beds: 3,
     baths: 2,
     area: '1,650',
-    gradient: 'from-blue-400 to-blue-600',
+    img: '/images/prop-worli-night.jpg',
     badge: 'Featured',
   },
   {
     id: 2,
     title: 'Luxury Studio Apartment',
     location: 'Bandra West, Mumbai',
-    price: '₹95,000/mo',
+    price: '₹1.20 Cr',
     type: 'For Sale',
     beds: 1,
     baths: 1,
     area: '650',
-    gradient: 'from-purple-400 to-purple-600',
+    img: '/images/prop-bandra-rendezvous.jpg',
     badge: 'New',
   },
   {
@@ -32,7 +32,7 @@ const properties = [
     beds: 5,
     baths: 5,
     area: '5,200',
-    gradient: 'from-teal-400 to-teal-600',
+    img: '/images/prop-imperial.jpg',
     badge: 'Hot Deal',
   },
   {
@@ -44,7 +44,7 @@ const properties = [
     beds: 2,
     baths: 2,
     area: '980',
-    gradient: 'from-amber-400 to-orange-500',
+    img: '/images/prop-powai.jpg',
     badge: null,
   },
   {
@@ -56,7 +56,7 @@ const properties = [
     beds: 0,
     baths: 2,
     area: '2,400',
-    gradient: 'from-green-400 to-emerald-600',
+    img: '/images/prop-bkc.jpg',
     badge: null,
   },
   {
@@ -68,20 +68,21 @@ const properties = [
     beds: 4,
     baths: 4,
     area: '3,100',
-    gradient: 'from-rose-400 to-red-500',
+    img: '/images/prop-worli-luxury.jpg',
     badge: 'New',
   },
 ];
 
-function PropertyCard({ property }: { property: typeof properties[0] }) {
+function PropertyCard({ property }: { property: (typeof properties)[0] }) {
   return (
     <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
-      {/* Image placeholder */}
-      <div className={`relative h-52 bg-gradient-to-br ${property.gradient} flex items-center justify-center`}>
-        <svg className="w-16 h-16 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-          <polyline points="9 22 9 12 15 12 15 22" />
-        </svg>
+      {/* Property image */}
+      <div className="relative h-52 overflow-hidden bg-gray-200">
+        <img
+          src={property.img}
+          alt={property.title}
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
 
         {/* Type badge */}
         <span className={`absolute top-3 left-3 text-xs font-bold px-3 py-1 rounded-full ${

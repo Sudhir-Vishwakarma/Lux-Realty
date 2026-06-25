@@ -18,7 +18,7 @@ export default function CTABanner() {
           <span className="text-amber-400"> Perfect Home?</span>
         </h2>
         <p className="text-blue-100 text-lg mb-10 max-w-2xl mx-auto">
-          Join over 3,200+ happy families who found their dream property in Mumbai with LuxeRealty. Our experts are ready to help you every step of the way.
+          Join over 3,200+ happy families who found their dream property in Mumbai with Realatte. Our experts are ready to help you every step of the way.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">

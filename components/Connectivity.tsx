@@ -49,7 +49,7 @@ export default function Connectivity() {
                 <div className="w-6 h-6 bg-amber-500 rounded-full border-4 border-white shadow-lg relative z-10" />
               </div>
               <div className="mt-2 bg-white text-blue-900 text-xs font-bold px-2 py-1 rounded-lg shadow-lg whitespace-nowrap -translate-x-1/4">
-                LuxeRealty Properties
+                Realatte Properties
               </div>
             </div>
 

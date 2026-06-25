@@ -58,7 +58,7 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link href="/" className="flex items-center shrink-0">
-              <img src="/logo.webp" alt="LuxeRealty" className="h-9 w-auto" />
+              <img src="/logo.webp" alt="Realatte" className="h-9 w-auto" />
             </Link>
 
             {/* Desktop Nav */}

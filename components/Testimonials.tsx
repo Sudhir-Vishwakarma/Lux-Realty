@@ -5,7 +5,7 @@ const testimonials = [
     initials: 'PS',
     color: 'bg-blue-500',
     rating: 5,
-    text: "LuxeRealty helped us find our dream 3BHK in Powai within just 3 weeks. Rahul from their team was incredibly patient and explained every step of the RERA verification process. Best home-buying experience we could have asked for!",
+    text: "Realatte helped us find our dream 3BHK in Powai within just 3 weeks. Rahul from their team was incredibly patient and explained every step of the RERA verification process. Best home-buying experience we could have asked for!",
   },
   {
     name: 'Rajesh Mehta',
@@ -13,7 +13,7 @@ const testimonials = [
     initials: 'RM',
     color: 'bg-amber-500',
     rating: 5,
-    text: "I have invested in three properties through LuxeRealty — two residential in Worli and one commercial unit in BKC. Their market insights are exceptional and the ROI on all three has been outstanding. Highly recommend to serious investors.",
+    text: "I have invested in three properties through Realatte — two residential in Worli and one commercial unit in BKC. Their market insights are exceptional and the ROI on all three has been outstanding. Highly recommend to serious investors.",
   },
   {
     name: 'Ananya Iyer',
@@ -21,7 +21,7 @@ const testimonials = [
     initials: 'AI',
     color: 'bg-purple-500',
     rating: 5,
-    text: "Found a beautiful studio in Bandra West through LuxeRealty in under a week. Neha handled everything — from shortlisting to the rental agreement — with complete transparency. Zero hidden charges, zero stress.",
+    text: "Found a beautiful studio in Bandra West through Realatte in under a week. Neha handled everything — from shortlisting to the rental agreement — with complete transparency. Zero hidden charges, zero stress.",
   },
   {
     name: 'Suresh Patel',
@@ -29,7 +29,7 @@ const testimonials = [
     initials: 'SP',
     color: 'bg-green-500',
     rating: 5,
-    text: "I was skeptical about getting a fair price for my Juhu villa, but LuxeRealty exceeded all expectations. Their marketing strategy brought in serious buyers within 10 days and I closed 8% above the asking price. Truly professional.",
+    text: "I was skeptical about getting a fair price for my Juhu villa, but Realatte exceeded all expectations. Their marketing strategy brought in serious buyers within 10 days and I closed 8% above the asking price. Truly professional.",
   },
 ];
 
