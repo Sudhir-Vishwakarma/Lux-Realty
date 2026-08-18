@@ -6,6 +6,7 @@ const BOTS = [
   { name: 'Pranit', label: 'General Property Enquiry', pubKey: 'cbk_pub_41016b05b5d2c6bd0e188d35' },
   { name: 'Rustomjee', label: 'Rustomjee Projects', pubKey: 'cbk_pub_30b481d3451f7749f042bb92' },
   { name: 'ATS HomeKraft', label: 'ATS HomeKraft Projects', pubKey: 'cbk_pub_ec348c5c93cb8064ab107da8' },
+  { name: 'Sanjay', label: 'Siddha Group', pubKey: 'cbk_pub_4a77b8ae7fb36a4645125c2b' },
 ];
 
 function sniffPubKey(host: HTMLElement): string | null {
@@ -92,6 +93,7 @@ export default function ChatbotFAB() {
     injectBot('cbk_pub_41016b05b5d2c6bd0e188d35');
     setTimeout(() => injectBot('cbk_pub_30b481d3451f7749f042bb92'), 1500);
     setTimeout(() => injectBot('cbk_pub_ec348c5c93cb8064ab107da8'), 3000);
+    setTimeout(() => injectBot('cbk_pub_4a77b8ae7fb36a4645125c2b'), 4500);
   }, []);
 
   useEffect(() => {
@@ -169,7 +171,7 @@ export default function ChatbotFAB() {
     watchForChatClose(w);
   }
 
-  const LABEL_BOTTOMS = [100, 180, 260];
+  const LABEL_BOTTOMS = [100, 180, 260, 340];
 
   return (
     <>
@@ -197,7 +199,7 @@ export default function ChatbotFAB() {
             <div className="flex items-center gap-3 bg-white rounded-2xl pl-4 pr-5 py-3 shadow-2xl border border-gray-100 hover:shadow-xl active:scale-95 transition-all">
               <div
                 className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 text-white font-bold text-sm"
-                style={{ background: w.idx === 0 ? '#1e3a8a' : w.idx === 1 ? '#d97706' : '#059669' }}
+                style={{ background: w.idx === 0 ? '#1e3a8a' : w.idx === 1 ? '#d97706' : w.idx === 2 ? '#059669' : '#7c3aed' }}
               >
                 {bot.name[0]}
               </div>
