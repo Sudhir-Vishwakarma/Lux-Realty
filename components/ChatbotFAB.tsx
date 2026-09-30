@@ -11,6 +11,10 @@ const BOTS = [
   // { name: 'Sunaina', label: 'Universal Education', pubKey: 'cbk_pub_f7d05ce368e7c32866ef829e' },
 ];
 
+// With a single bot there is nothing to choose between — skip the speed-dial FAB
+// and leave the widget's own launcher visible on the page
+const SINGLE_BOT = BOTS.length === 1;
+
 function sniffPubKey(host: HTMLElement): string | null {
   for (const attr of ['data-chatbot', 'data-key', 'id']) {
     const val = host.getAttribute(attr) ?? '';
@@ -101,6 +105,8 @@ export default function ChatbotFAB() {
   }, []);
 
   useEffect(() => {
+    if (SINGLE_BOT) return;
+
     function processHost(host: HTMLElement) {
       const shadow = host.shadowRoot;
       if (!shadow) return;
@@ -174,6 +180,8 @@ export default function ChatbotFAB() {
     // Watch for the chat panel to close, then re-hide the host
     watchForChatClose(w);
   }
+
+  if (SINGLE_BOT) return null;
 
   const LABEL_BOTTOMS = [100, 180, 260, 340, 420];
 
