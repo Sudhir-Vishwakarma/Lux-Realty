@@ -2,12 +2,13 @@
 
 import { useState, useEffect, useRef } from 'react';
 
+// TEMP (testing): only Manju is active — uncomment the others to restore
 const BOTS = [
-  { name: 'Pranit', label: 'General Property Enquiry', pubKey: 'cbk_pub_41016b05b5d2c6bd0e188d35' },
-  { name: 'Rustomjee', label: 'Rustomjee Projects', pubKey: 'cbk_pub_30b481d3451f7749f042bb92' },
-  { name: 'ATS HomeKraft', label: 'ATS HomeKraft Projects', pubKey: 'cbk_pub_ec348c5c93cb8064ab107da8' },
+  // { name: 'Pranit', label: 'General Property Enquiry', pubKey: 'cbk_pub_41016b05b5d2c6bd0e188d35' },
+  // { name: 'Rustomjee', label: 'Rustomjee Projects', pubKey: 'cbk_pub_30b481d3451f7749f042bb92' },
+  // { name: 'ATS HomeKraft', label: 'ATS HomeKraft Projects', pubKey: 'cbk_pub_ec348c5c93cb8064ab107da8' },
   { name: 'Manju', label: 'Mana Projects', pubKey: 'cbk_pub_3ffcc9d887ba22571ca7ccef' },
-  { name: 'Sunaina', label: 'Universal Education', pubKey: 'cbk_pub_f7d05ce368e7c32866ef829e' },
+  // { name: 'Sunaina', label: 'Universal Education', pubKey: 'cbk_pub_f7d05ce368e7c32866ef829e' },
 ];
 
 function sniffPubKey(host: HTMLElement): string | null {
@@ -91,11 +92,12 @@ export default function ChatbotFAB() {
       s.async = true;
       document.body.appendChild(s);
     }
-    injectBot('cbk_pub_41016b05b5d2c6bd0e188d35');
-    setTimeout(() => injectBot('cbk_pub_30b481d3451f7749f042bb92'), 1500);
-    setTimeout(() => injectBot('cbk_pub_ec348c5c93cb8064ab107da8'), 3000);
-    setTimeout(() => injectBot('cbk_pub_3ffcc9d887ba22571ca7ccef'), 4500);
-    setTimeout(() => injectBot('cbk_pub_f7d05ce368e7c32866ef829e'), 6000);
+    // TEMP (testing): only Manju is injected — restore the others with their original delays
+    // injectBot('cbk_pub_41016b05b5d2c6bd0e188d35');
+    // setTimeout(() => injectBot('cbk_pub_30b481d3451f7749f042bb92'), 1500);
+    // setTimeout(() => injectBot('cbk_pub_ec348c5c93cb8064ab107da8'), 3000);
+    injectBot('cbk_pub_3ffcc9d887ba22571ca7ccef'); // originally setTimeout(..., 4500)
+    // setTimeout(() => injectBot('cbk_pub_f7d05ce368e7c32866ef829e'), 6000);
   }, []);
 
   useEffect(() => {
